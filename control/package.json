@@ -1,0 +1,9 @@
+{
+  "name": "shuttle",
+  "type": "module",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "repository": "git@github.com:/LITdevs/shuttle.git",
+  "author": "Amy <amy@litdevs.org>",
+  "license": "UNLICENSED"
+}

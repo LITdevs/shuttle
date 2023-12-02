@@ -1,0 +1,42 @@
+{
+	"webPort": {
+		"value": 80,
+		"comment": "Port to listen for HTTP traffic on (for HTTPS use a reverse proxy)"
+	},
+	"ingestPort": {
+		"value": 2999,
+		"comment": "Port to listen for ingest traffic on"
+	},
+	"controlServerUrl": {
+		"value": "https://ingest.your.domain:2999",
+		"comment": "The url of the control server, this needs to be accessible for all the agents reporting data"
+	},
+	"mongoUri": {
+		"value": "mongodb+srv://username:password@your.mongo.host/shuttle?retryWrites=true&w=majority",
+		"comment": "MongoDB connection string"
+	},
+	"smtp": {
+		"comment": "SMTP settings for email alerts",
+		"enabled": false,
+		"host": {
+			"value": "mail.your.domain",
+			"comment": "Hostname of the mail server"
+		},
+		"port": {
+			"value": 25,
+			"comment": "SMTP port to use for sending emails"
+		},
+		"secure": {
+			"value": false,
+			"comment": "See https://nodemailer.com/smtp/#tls-options"
+		},
+		"auth": {
+			"value": {
+				"type": "login",
+				"user": "no-reply",
+				"pass": "your-password"
+			},
+			"comment": "Auth object passed to nodemailer: https://nodemailer.com/smtp/#authentication"
+		}
+	}
+}
