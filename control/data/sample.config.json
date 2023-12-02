@@ -1,4 +1,8 @@
 {
+	"logLevel": {
+		"value": "INFO",
+		"comment": "Log verbosity, DEBUG/INFO/WARN/ERROR"
+	},
 	"webPort": {
 		"value": 80,
 		"comment": "Port to listen for HTTP traffic on (for HTTPS use a reverse proxy)"
