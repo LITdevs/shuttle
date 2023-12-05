@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
 import EventEmitter from "events";
-import agentDatapointSchema from "./schemas/agentDatapointSchema.js";
 import {configuration, logger} from "./index.js";
+import userSchema from "./schemas/userSchema.js";
+import organizationSchema from "./schemas/organizationSchema.js";
 
 export default class Database {
 
@@ -11,7 +12,8 @@ export default class Database {
     db;
     events = new EventEmitter();
 
-    AgentDatapoint;
+    User;
+    Organization;
 
     constructor() {
         if (typeof Database._instance === "object") return Database._instance;
@@ -20,7 +22,7 @@ export default class Database {
         // Connect to the database
         const DB_URI = configuration.mongoUri.value;
         if (typeof DB_URI === "undefined") {
-            console.error("\nMONGODB_URI not found, Exiting...");
+            logger.error("\nmongoUri not found, Exiting...");
             process.exit(3);
         }
 
@@ -34,7 +36,8 @@ export default class Database {
 
     #onOpen() {
         logger.debug("MongoDB connection established");
-        this.AgentDatapoint = this.db.model('agentDatapoint', agentDatapointSchema);
+        this.User = this.db.model("user", userSchema);
+        this.Organization = this.db.model("organization", organizationSchema)
         this.events.emit("ready");
     }
 }

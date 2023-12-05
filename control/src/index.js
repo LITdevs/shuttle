@@ -3,7 +3,7 @@ import path from "path"
 import chalk from "chalk";
 import {homedir} from "os"
 import express from "express";
-const ingest = express()
+const web = express()
 
 const LOG_LEVEL = {
     DEBUG: 9, // how cirno is that
@@ -95,13 +95,13 @@ export {configuration}
 import Database from "./db.js"
 const db = new Database();
 
-ingest.get("/", (req, res) => {
+web.get("/", (req, res) => {
     res.send("Hello world! I ate hakase for dinner *rubs tummy*<br>yum yum tasty hakase :333")
 })
 
-// Once database reports itself as being ready start listening for requests
+// Once database reports itself as being ready start Frontend and API
 db.events.once("ready", () => {
-    ingest.listen(configuration.ingestPort.value, () => {
-        logger.info(`Ingest express server listening on port ${configuration.ingestPort.value}`)
+    web.listen(configuration.webPort.value, () => {
+        logger.info(`Web listening on port ${configuration.webPort.value}`)
     })
 })
