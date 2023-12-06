@@ -7,6 +7,10 @@
 		"value": 80,
 		"comment": "Port to listen for HTTP traffic on (for HTTPS use a reverse proxy)"
 	},
+	"trustProxy": {
+		"value": false,
+		"comment": "Either false or the name of the header the reverse proxy puts the client IP in."
+	},
 	"ingestPort": {
 		"value": 2999,
 		"comment": "Port to listen for ingest traffic on"

@@ -2,8 +2,6 @@ import fs from "fs";
 import path from "path"
 import chalk from "chalk";
 import {homedir} from "os"
-import express from "express";
-const web = express()
 
 const LOG_LEVEL = {
     DEBUG: 9, // how cirno is that
@@ -89,19 +87,9 @@ try {
 } catch (e) {
     console.error("Unable to read configuration files", e)
 }
+
 export {configuration}
 
-// Import and initialize Database
-import Database from "./db.js"
-const db = new Database();
+import web from "./web.js";
 
-web.get("/", (req, res) => {
-    res.send("Hello world! I ate hakase for dinner *rubs tummy*<br>yum yum tasty hakase :333")
-})
-
-// Once database reports itself as being ready start Frontend and API
-db.events.once("ready", () => {
-    web.listen(configuration.webPort.value, () => {
-        logger.info(`Web listening on port ${configuration.webPort.value}`)
-    })
-})
+web()
